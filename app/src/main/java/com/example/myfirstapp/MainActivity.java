@@ -8,7 +8,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Somewhat works at launch for all functions
+    //Works
+    //signBtn and percentBtn not implemented
     private Button addBtn;
     private Button subBtn;
     private Button mulBtn;
@@ -30,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView resultTextView;
     //static int result = 0;
     static String symbol = "";
-    static Integer val1 = 0;
-    static Integer val2 = 0;
+    static Float val1 = (float)0;
+    static Float val2 = (float)0;
     static String num = "";
     static Integer res;
 
@@ -150,11 +151,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (symbol == "") {
-                    val1 = Integer.parseInt(num);
+                    val1 = Float.parseFloat(num);
                     symbol = "+";
                     num = "";
                 }else if(symbol != ""){
-                    val2 = Integer.parseInt(num);
+                    val2 = Float.parseFloat(num);
                     val1 = compute(val1, symbol, val2);
                     num = "";
                 }
@@ -166,11 +167,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (symbol == "") {
-                    val1 = Integer.parseInt(num);
+                    val1 = Float.parseFloat(num);
                     symbol = "-";
                     num = "";
                 }else if(symbol != ""){
-                    val2 = Integer.parseInt(num);
+                    val2 = Float.parseFloat(num);
                     val1 = compute(val1, symbol, val2);
                     num = "";
                 }
@@ -182,11 +183,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (symbol == "") {
-                    val1 = Integer.parseInt(num);
+                    val1 = Float.parseFloat(num);
                     symbol = "*";
                     num = "";
                 }else if(symbol != ""){
-                    val2 = Integer.parseInt(num);
+                    val2 = Float.parseFloat(num);
                     val1 = compute(val1, symbol, val2);
                     num = "";
                 }
@@ -198,11 +199,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (symbol == "") {
-                    val1 = Integer.parseInt(num);
+                    val1 = Float.parseFloat(num);
                     symbol = "/";
                     num = "";
                 }else if(symbol != ""){
-                    val2 = Integer.parseInt(num);
+                    val2 = Float.parseFloat(num);
                     val1 = compute(val1, symbol, val2);
                     num = "";
                 }
@@ -213,10 +214,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                val2 = Integer.parseInt(num);
+                val2 = Float.parseFloat(num);
                 val1 = compute(val1, symbol, val2);
                 symbol = "";
-                num = "";
+                num = val1.toString();
                 resultTextView.setText(val1.toString());
             }
         });
@@ -224,8 +225,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                val1 = 0;
-                val2 = 0;
+                val1 = (float)0;
+                val2 = (float)0;
                 symbol = "";
                 resultTextView.setText("0");
             }
@@ -255,8 +256,8 @@ public class MainActivity extends AppCompatActivity {
         resultTextView = (TextView) findViewById(R.id.resultTextView);
     }
 
-    public static int compute(int v1, String sym, int v2){
-        int result = 0;
+    public static float compute(float v1, String sym, float v2){
+        float result = 0;
         if(sym == "+"){
             result = v1 + v2;
         }else if(sym == "-"){
