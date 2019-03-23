@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    //Somewhat works at launch for addition and subtraction
+    //Somewhat works at launch for all functions
     private Button addBtn;
     private Button subBtn;
     private Button mulBtn;
@@ -181,22 +181,32 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                int val = Integer.parseInt(resultTextView.getText().toString());
-                String symbol = "*";
-
-                Integer res = compute(val1, symbol, val2);
-                resultTextView.setText("0");
+                if (symbol == "") {
+                    val1 = Integer.parseInt(num);
+                    symbol = "*";
+                    num = "";
+                }else if(symbol != ""){
+                    val2 = Integer.parseInt(num);
+                    val1 = compute(val1, symbol, val2);
+                    num = "";
+                }
+                resultTextView.setText(resultTextView.getText().toString() + " * ");
             }
         });
         divBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                int val1 = Integer.parseInt(resultTextView.getText().toString());
-                String symbol = "/";
-
-                res = compute(val1, symbol, val2);
-                resultTextView.setText("0");
+                if (symbol == "") {
+                    val1 = Integer.parseInt(num);
+                    symbol = "/";
+                    num = "";
+                }else if(symbol != ""){
+                    val2 = Integer.parseInt(num);
+                    val1 = compute(val1, symbol, val2);
+                    num = "";
+                }
+                resultTextView.setText(resultTextView.getText().toString() + " / ");
             }
         });
         equalBtn.setOnClickListener(new View.OnClickListener() {
@@ -206,6 +216,7 @@ public class MainActivity extends AppCompatActivity {
                 val2 = Integer.parseInt(num);
                 val1 = compute(val1, symbol, val2);
                 symbol = "";
+                num = "";
                 resultTextView.setText(val1.toString());
             }
         });
