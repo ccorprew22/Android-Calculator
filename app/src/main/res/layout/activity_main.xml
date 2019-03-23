@@ -103,10 +103,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:text="÷"
         app:layout_constraintEnd_toEndOf="@+id/btnConstraintLayout"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/precentBtn"
         app:layout_constraintTop_toTopOf="@+id/btnConstraintLayout" />
 
@@ -121,6 +123,7 @@
         android:layout_marginRight="8dp"
         android:text="X"
         app:layout_constraintEnd_toEndOf="@+id/btnConstraintLayout"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/threeBtn"
         app:layout_constraintTop_toBottomOf="@+id/divBtn" />
 
