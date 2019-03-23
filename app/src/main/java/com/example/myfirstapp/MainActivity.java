@@ -9,7 +9,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     //Works
-    //signBtn and percentBtn not implemented
+
     private Button addBtn;
     private Button subBtn;
     private Button mulBtn;
@@ -24,17 +24,17 @@ public class MainActivity extends AppCompatActivity {
     private Button eightBtn;
     private Button nineBtn;
     private Button zeroBtn;
-    //private Button signBtn;
-    //private Button percentBtn;
+    private Button signBtn;
+    private Button percentBtn;
     private Button equalBtn;
     private Button clearBtn;
     private TextView resultTextView;
-    //static int result = 0;
+
     static String symbol = "";
     static Float val1 = (float)0;
     static Float val2 = (float)0;
     static String num = "";
-    static Integer res;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,15 @@ public class MainActivity extends AppCompatActivity {
 
         setupUIViews();
 
-
+        signBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v){
+                if(resultTextView.getText().toString() == "0"){
+                }else {
+                    resultTextView.setText("-" + resultTextView.getText().toString());
+                }
+                num = "-" + num;
+            }
+        });
 
         zeroBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
@@ -146,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -210,6 +219,27 @@ public class MainActivity extends AppCompatActivity {
                 resultTextView.setText(resultTextView.getText().toString() + " / ");
             }
         });
+
+        percentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (symbol == "") {
+                    val1 = Float.parseFloat(num);
+                    val1 = percent(val1);
+                    num = val1.toString();
+                    resultTextView.setText(val1.toString());
+                }else if(symbol != ""){
+                    val2 = Float.parseFloat(num);
+                    val1 = compute(val1, symbol, val2);
+                    val1 = percent(val1);
+                    num = val1.toString();
+                    resultTextView.setText(val1.toString());
+                }
+
+            }
+        });
+
         equalBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -249,8 +279,8 @@ public class MainActivity extends AppCompatActivity {
         eightBtn = (Button) findViewById(R.id.eightBtn);
         nineBtn = (Button) findViewById(R.id.nineBtn);
         zeroBtn = (Button) findViewById(R.id.zeroBtn);
-        //signBtn = (Button) findViewById(R.id.signBtn);
-        //percentBtn = (Button) findViewById(R.id.percentBtn);
+        signBtn = (Button) findViewById(R.id.signBtn);
+        percentBtn = (Button) findViewById(R.id.percentBtn);
         equalBtn = (Button) findViewById(R.id.equalBtn);
         clearBtn = (Button) findViewById(R.id.clearBtn);
         resultTextView = (TextView) findViewById(R.id.resultTextView);
@@ -267,6 +297,10 @@ public class MainActivity extends AppCompatActivity {
         }else if(sym == "*"){
             result = v1 * v2;
         }
+        return result;
+    }
+    public static float percent(float v1){
+        float result = v1/100;
         return result;
     }
 
